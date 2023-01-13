@@ -5,9 +5,9 @@ This repo makes aims to make it very easy for you to understand
 ## NOTES
 
 ```js
-// /////////////////
-// ///MY NOTES//////
-// ////////////////
+// ///////////////////////////////////////////
+// ///QUICK NOTES ONE SINGLY LINKED LIST//////
+// ///////////////////////////////////////////
 
 // NODE => is a single node. eg: [A] 
 // NODE-LIST => is a collection of nodes e.g. [A][B][C]
@@ -16,101 +16,116 @@ This repo makes aims to make it very easy for you to understand
 Characteristics of NODES and NODE-LISTS
 1. EMPTY NODE-LIST
    a. Has no NODE
-   b. Head = tail = null
+   b. Head(h) = Tail(t) = null
+
 
 2. NODE-LIST with a single/one NODE e.g [A]
-   a. Head = Tail = NODE e.g for a NODE-LIST with a single NODE [A], both Head(h) and 
-     the Tail(t) points to the NODE.
-                ht
+   a. Head(h) = Tail(t) = NODE e.g for a NODE-LIST with a single NODE [A], both Head(h) and 
+     the Tail(t) points to the NODE as shown bellow:
+
+                 ht
                 [A]
 
+
 3. NODE-LIST with more than one NODE. e.g. [A][B][C][D] 
-   b. Head(h) = [A] and the Tail(t)= [D].
+   a. Head(h) = [A] and the Tail(t)= [D] as shown bellow:
+
                 h         t
                 [A][B][C][D]
-   Note, in this case: - First NODE is the Head(h)
-                       - Last NODE is the Tail
+
+   Note, in this case: - First NODE [A] is the Head(h)
+                       - Last NODE [B] is the Tail(t)
                        
-4. In our example above, the next of the first NODE [A] is [B] and the next of [B] is [C]
-5. The next of the last NODE(also called the Tail) is always null.
+4. In our example above, the "next" node of the first NODE [A] is [B] and the    
+   "next" node of [B] is [C]
+
+5. The "next" node of the last NODE(also called the Tail) is always null.
 
 */
 
+
+
+// ///////////////////////////
+// 1. CREATING A NODE CLASS
+// ///////////////////////////
 class Node {
-  constructor(value) {
-    this.value = value;
-    this.next = null;
+    constructor(value) {
+      this.value = value;
+      this.next = null;
+    }
   }
-}
-
-class LinkedList {   
-  constructor() {
-    this.head = null;
-    this.tail = null;
-  }
-
-  add(value) {
-    const newNode = new Node(value);
   
-    if (!this.head) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      this.tail.next = newNode;
-      this.tail = newNode;
-      //                                      H        T
-      //  head -A-B-C-D- tail => node list   [B][C][D][E]--
+  // ///////////////////////////
+  // 2. CREATING A NODE-LIST CLASS
+  // ///////////////////////////
+  class LinkedList {   
+    constructor() {
+      this.head = null;
+      this.tail = null;
     }
-  }
-
-  remove() {
-    if (!this.head) {
-      return -1;
-    }
-    const temp = this.head;
-    this.head = null
-    this.head = temp.next;
+  
+    add(value) {
+      const newNode = new Node(value);
     
-    return temp.value;
+      if (!this.head) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else {
+        this.tail.next = newNode;
+        this.tail = newNode;
+      }
+    }
+  
+    remove() { //From beginning
+      if (!this.head) {
+        return -1;
+      }
+      const temp = this.head;
+      this.head = null
+      this.head = temp.next;
+      
+      return temp.value;
+    }
   }
-}
-
-const list = new LinkedList();
-
-class Queue {
-  add(number) {
-    // your code here
-    list.add(number);
+  
+  const list = new LinkedList();
+  
+  class Queue {
+    add(number) {
+      // your code here
+      list.add(number);
+    }
+  
+    remove() {
+      // your code here
+      return list.remove();
+    }
   }
-
-  remove() {
-    // your code here
-    return list.remove();
-  }
-}
-
-const queue = new Queue();
-
-queue.add(3);
-queue.add(5);
-console.log(queue.remove());
-// => 3
-
-queue.add(2);
-queue.add(7);
-console.log(queue.remove());
-// => 5
-
-console.log(queue.remove());
-// => 2
-
-console.log(queue.remove());
-// => 7
-
-console.log(queue.remove());
-// => -1
-
-module.exports = Queue;
+  
+  const queue = new Queue();
+  
+  
+  // ///////////////////////////
+  // 3. TESTING OUR NODE-LIST
+  // ///////////////////////////
+  queue.add(3);
+  queue.add(5);
+  console.log(queue.remove());
+  // => 3
+  
+  queue.add(2);
+  queue.add(7);
+  console.log(queue.remove());
+  // => 5
+  
+  console.log(queue.remove());
+  // => 2
+  
+  console.log(queue.remove());
+  // => 7
+  
+  console.log(queue.remove());
+  // => -1
 
 ```
 
