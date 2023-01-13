@@ -83,41 +83,28 @@ class Node {
   
   const list = new LinkedList();
   
-  class Queue {
-    add(number) {
-      // your code here
-      list.add(number);
-    }
-  
-    remove() {
-      // your code here
-      return list.remove();
-    }
-  }
-  
-  const queue = new Queue();
   
   
   // ///////////////////////////
   // 3. TESTING OUR NODE-LIST
   // ///////////////////////////
-  queue.add(3);
-  queue.add(5);
-  console.log(queue.remove());
+  list.add(3);
+  list.add(5);
+  console.log(list.remove());
   // => 3
   
-  queue.add(2);
-  queue.add(7);
-  console.log(queue.remove());
+  list.add(2);
+  list.add(7);
+  console.log(list.remove());
   // => 5
   
-  console.log(queue.remove());
+  console.log(list.remove());
   // => 2
   
-  console.log(queue.remove());
+  console.log(list.remove());
   // => 7
   
-  console.log(queue.remove());
+  console.log(list.remove());
   // => -1
   
 
