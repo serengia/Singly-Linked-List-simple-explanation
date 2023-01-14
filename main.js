@@ -1,8 +1,8 @@
 // ///////////////////////////////////////////
-// ///QUICK NOTES ONE SINGLY LINKED LIST//////
+// ///QUICK NOTES ON SINGLY LINKED LIST///////
 // ///////////////////////////////////////////
 
-// NODE => is a single node. eg: [A] 
+// NODE => is a single node. eg: [A]
 // NODE-LIST => is a collection of nodes e.g. [A][B][C]
 
 /*
@@ -36,76 +36,121 @@ Characteristics of NODES and NODE-LISTS
 
 */
 
-
-
 // ///////////////////////////
 // 1. CREATING A NODE CLASS
 // ///////////////////////////
 class Node {
-    constructor(value) {
-      this.value = value;
-      this.next = null;
-    }
+  constructor(value) {
+    this.value = value;
+    this.next = null;
   }
-  
-  // ///////////////////////////
-  // 2. CREATING A NODE-LIST CLASS
-  // ///////////////////////////
-  class LinkedList {   
-    constructor() {
+}
+
+// ///////////////////////////
+// 2. CREATING A NODE-LIST CLASS
+// ///////////////////////////
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  unshift(value) {
+    // Add node at the beginning
+    const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+
+      this.length++;
+      return this;
+    }
+
+    const temp = this.head;
+    this.head = newNode;
+    newNode.next = temp;
+
+    this.length++;
+    return this;
+  }
+
+  shift() {
+    //Remove Node From beginning
+    if (!this.head) {
+      this.length--;
+      return -1;
+    }
+    const temp = this.head;
+    this.head = null;
+    this.head = temp.next;
+
+    this.length--;
+
+    return temp.value;
+  }
+
+  push(value) {
+    // Add node to the end of node list
+    const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+      return this;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
+
+  pop() {
+    if (!this.head) return null;
+    let currentTail = this.head;
+    let newTail = currentTail;
+
+    while (currentTail.next) {
+      newTail = currentTail;
+      currentTail = currentTail.next;
+    }
+
+    this.tail = newTail;
+    this.tail.next = null;
+
+    if (this.length == 0) {
       this.head = null;
       this.tail = null;
     }
-  
-    add(value) {
-      const newNode = new Node(value);
-    
-      if (!this.head) {
-        this.head = newNode;
-        this.tail = newNode;
-      } else {
-        this.tail.next = newNode;
-        this.tail = newNode;
-      }
-    }
-  
-    remove() { //From beginning
-      if (!this.head) {
-        return -1;
-      }
-      const temp = this.head;
-      this.head = null
-      this.head = temp.next;
-      
-      return temp.value;
-    }
+
+    this.length--;
+    return currentTail.value;
   }
-  
-  const list = new LinkedList();
-  
-  
-  
-  // ///////////////////////////
-  // 3. TESTING OUR NODE-LIST
-  // ///////////////////////////
-  list.add(3);
-  list.add(5);
-  console.log(list.remove());
-  // => 3
-  
-  list.add(2);
-  list.add(7);
-  console.log(list.remove());
-  // => 5
-  
-  console.log(list.remove());
-  // => 2
-  
-  console.log(list.remove());
-  // => 7
-  
-  console.log(list.remove());
-  // => -1
-  
+}
 
+const list = new LinkedList();
 
+// ///////////////////////////
+// 3. TESTING OUR NODE-LIST
+// ///////////////////////////
+// list.push(1);
+// list.push(2);
+// list.push(3);
+// list.push(4);
+
+// console.log(list.pop());
+// console.log(list.pop());
+// console.log(list.pop());
+// console.log(list.pop());
+// console.log(list.pop());
+
+list.unshift(1);
+list.unshift(2);
+list.unshift(3);
+list.unshift(4);
+
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
