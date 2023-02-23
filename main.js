@@ -7,13 +7,13 @@
 
 /*
 Characteristics of NODES and NODE-LISTS
-1. EMPTY NODE-LIST
-   a. Has no NODE
-   b. Head(h) = Tail(t) = null
+1. AN EMPTY NODE-LIST
+   (i). Has no NODE
+   (ii). Head(h) = Tail(t) = null
 
 
 2. NODE-LIST with a single/one NODE e.g [A]
-   a. Head(h) = Tail(t) = NODE e.g for a NODE-LIST with a single NODE [A], both Head(h) and 
+   (i). Head(h) = Tail(t) = NODE e.g for a NODE-LIST with a single NODE [A], both Head(h) and 
      the Tail(t) points to the NODE as shown bellow:
 
                  ht
@@ -21,7 +21,7 @@ Characteristics of NODES and NODE-LISTS
 
 
 3. NODE-LIST with more than one NODE. e.g. [A][B][C][D] 
-   a. Head(h) = [A] and the Tail(t)= [D] as shown bellow:
+   (i). Head(h) = [A] and the Tail(t)= [D] as shown bellow:
 
                 h         t
                 [A][B][C][D]
@@ -78,7 +78,7 @@ class LinkedList {
   shift() {
     //Remove Node From beginning
     if (!this.head) {
-      this.length--;
+      this.length = 0;
       return -1;
     }
     const temp = this.head;
