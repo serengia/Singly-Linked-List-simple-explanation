@@ -86,7 +86,7 @@ class LinkedList {
   shift() {
     //Remove Node From beginning
     if (!this.head) {
-      this.length--;
+      this.length = 0;
       return -1;
     }
     const temp = this.head;
