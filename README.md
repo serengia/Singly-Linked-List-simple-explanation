@@ -1,4 +1,6 @@
 # Singly Linked List simple explanation with example
+![Singly linked list - 2Feb2022singly-linked-list](https://user-images.githubusercontent.com/69452516/220868746-a9279723-3226-4c95-98a2-8825e337bce0.png)
+
 
 Some times it is very difficult to understand and implement a Singly Linked List.
 This repo makes aims to make it very easy for you to understand
@@ -15,20 +17,20 @@ This repo makes aims to make it very easy for you to understand
 
 /*
 Characteristics of NODES and NODE-LISTS
-1. EMPTY NODE-LIST
-   a. Has no NODE
-   b. Head(h) = Tail(t) = null
+1. AN EMPTY NODE-LIST
+   (i). Has no NODE
+   (ii). Head(h) = Tail(t) = null
 
 
-2. NODE-LIST with a single/one NODE e.g [A]
-   a. Head(h) = Tail(t) = NODE e.g for a NODE-LIST with a single NODE [A], both Head(h) and 
+2. A NODE-LIST with a single/one NODE e.g [A]
+   (i). Head(h) = Tail(t) = NODE e.g for a NODE-LIST with a single NODE [A], both Head(h) and 
      the Tail(t) points to the NODE as shown bellow:
 
                  ht
                 [A]
 
 
-3. NODE-LIST with more than one NODE. e.g. [A][B][C][D] 
+3. A NODE-LIST with more than one NODE. e.g. [A][B][C][D] 
    a. Head(h) = [A] and the Tail(t)= [D] as shown bellow:
 
                 h         t
