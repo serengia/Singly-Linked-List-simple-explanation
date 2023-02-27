@@ -59,6 +59,7 @@ class Node {
 // ///////////////////////////
 // 2. CREATING A NODE-LIST CLASS
 // ///////////////////////////
+
 class LinkedList {
   constructor() {
     this.head = null;
@@ -66,8 +67,8 @@ class LinkedList {
     this.length = 0;
   }
 
+  // ACTION: Add node at the beginning of a node list
   unshift(value) {
-    // Add node at the beginning
     const newNode = new Node(value);
     if (!this.head) {
       this.head = newNode;
@@ -85,8 +86,8 @@ class LinkedList {
     return this;
   }
 
+  // ACTION: Remove a node at the beginning of a node list
   shift() {
-    //Remove Node From beginning
     if (!this.head) {
       this.length = 0;
       return -1;
@@ -100,13 +101,12 @@ class LinkedList {
     return temp.value;
   }
 
+  // ACTION: Add a node at the end of a node list
   push(value) {
-    // Add node to the end of node list
     const newNode = new Node(value);
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
-      return this;
     } else {
       this.tail.next = newNode;
       this.tail = newNode;
@@ -115,6 +115,7 @@ class LinkedList {
     return this;
   }
 
+  // ACTION: remove a node from the end of a node list
   pop() {
     if (!this.head) return null;
     let currentTail = this.head;
@@ -128,6 +129,7 @@ class LinkedList {
     this.tail = newTail;
     this.tail.next = null;
 
+    this.length--;
     if (this.length == 0) {
       this.head = null;
       this.tail = null;
@@ -136,6 +138,125 @@ class LinkedList {
     this.length--;
     return currentTail.value;
   }
+
+  // Search for a node
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+    let counter = 0;
+    let currentNode = this.head;
+
+    while (counter !== index) {
+      counter++;
+      currentNode = currentNode.next;
+    }
+    return currentNode;
+  }
+
+  set(index, value) {
+    const foundNode = this.get(index);
+    if (!foundNode) return false;
+    foundNode.value = value;
+  }
+
+  insert(index, value) {
+    if (index < 0 || index > this.length) return false;
+
+    if (index === this.length) return !!this.push(value);
+    if (index === 0) return !!this.unshift(value);
+
+    const previousNode = this.get(index - 1);
+    const newNode = new Node(value);
+    const oldNode = previousNode.next;
+    previousNode.next = newNode;
+    newNode.next = oldNode;
+    this.length++;
+    return true;
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return null;
+
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    const previousNode = this.get(index - 1);
+    const nodeToRemove = previousNode.next;
+    previousNode.next = null;
+    const nextNode = nodeToRemove.next;
+
+    previousNode.next = nextNode;
+    this.length--;
+    return nodeToRemove;
+  }
+
+  reverse() {
+    let currentNode = this.head;
+    this.head = this.tail;
+    this.tail = currentNode;
+
+    let nextNode;
+    let previousNode = null;
+
+    let length = 0;
+    while (length < this.length) {
+      nextNode = currentNode.next;
+      currentNode.next = previousNode;
+      previousNode = currentNode;
+      currentNode = nextNode;
+      length++;
+    }
+    return this;
+  }
+
+  // BIG O - TIME COMPLEXITY ANALYSIS
+
+  // 1.  unshift()
+  // ACTION: Add node at the beginning of a node list
+  // ✅Excellent in terms of Time Complexity
+  // ✅has a BigO of CONSTANT TIME COMPLEXITY, ie O(1)
+
+  // 2. shift()
+  // ACTION: Remove a node at the beginning of a node list
+  // ✅Excellent in terms of Time Complexity
+  // ✅has a BigO of CONSTANT TIME COMPLEXITY, ie O(1)
+
+  // 3. push()
+  // ACTION: Add a node at the end of a node list
+  // ✅Excellent in terms of Time Complexity
+  // ✅has a BigO of CONSTANT TIME COMPLEXITY, ie O(1)
+
+  // 4. pop()
+  // ACTION: remove a node from the end of a node list
+  // ☹️ Not so great in terms of Time Complexity
+  // ☹️ has a BigO of LINEAR TIME COMPLEXITY, ie O(n)
+
+  // 5. get()
+  // ACTION: get/search a node from a node list
+  // ☹️ Not so great in terms of Time Complexity
+  // ☹️ has a BigO of LINEAR TIME COMPLEXITY, ie O(n)
+
+  // 6. set()
+  // ACTION: get/search a node from a node list
+  // ☹️ Not so great in terms of Time Complexity
+  // ☹️ has a BigO of LINEAR TIME COMPLEXITY, ie O(n)
+
+  // 7. insert()
+  // ACTION: get/search a node from a node list
+  // ☹️ Not so great in terms of Time Complexity
+  //  Great if you are inserting from the beginning(ie. unshift) or
+  //  inserting at the end(ie. push)
+  // ☹️ has a BigO of LINEAR TIME COMPLEXITY, ie O(n)
+
+  // 8. remove()
+  // ACTION: get/search a node from a node list
+  // ☹️ Not so great in terms of Time Complexity
+  // Great if you are removing from the beginning(ie. shift)
+  // ☹️ has a BigO of LINEAR TIME COMPLEXITY, ie O(n)
+
+  // 8. reverse()
+  // ACTION: get/search a node from a node list
+  // ☹️ Not so great in terms of Time Complexity
+  // ☹️ has a BigO of LINEAR TIME COMPLEXITY, ie O(n)
 }
 
 const list = new LinkedList();
@@ -143,10 +264,10 @@ const list = new LinkedList();
 // ///////////////////////////
 // 3. TESTING OUR NODE-LIST
 // ///////////////////////////
-// list.push(1);
-// list.push(2);
-// list.push(3);
-// list.push(4);
+list.push(1);
+list.push(2);
+list.push(3);
+list.push(4);
 
 // console.log(list.pop());
 // console.log(list.pop());
@@ -154,14 +275,28 @@ const list = new LinkedList();
 // console.log(list.pop());
 // console.log(list.pop());
 
-list.unshift(1);
-list.unshift(2);
-list.unshift(3);
-list.unshift(4);
+// list.unshift(1);
+// list.unshift(2);
+// list.unshift(3);
+// list.unshift(4);
 
-console.log(list.shift());
-console.log(list.shift());
-console.log(list.shift());
-console.log(list.shift());
-console.log(list.shift());
+// console.log(list.shift());
+// console.log(list.shift());
+// console.log(list.shift());
+// console.log(list.shift());
+// console.log(list.shift());
+
+// console.log(list.get(1));
+// list.set(1, 10);
+// console.log(list.get(1));
+
+// console.log(list.insert(4, 9));
+// console.log(list.get(3));
+
+// console.log(list.remove(1));
+// console.log(list);
+
+console.log("ORIGINAL=>", list);
+list.reverse();
+console.log("NEW=>", list);
 ```
