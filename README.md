@@ -1,5 +1,6 @@
-# Singly Linked List simple explanation with example
-![Singly linked list - 2Feb2022singly-linked-list](https://user-images.githubusercontent.com/69452516/220868746-a9279723-3226-4c95-98a2-8825e337bce0.png)
+# Singly Linked List simpler explanation with examples
+
+![Singly linked list - 27Feb2022singly-linked-list](https://user-images.githubusercontent.com/69452516/221493233-6fe02a3f-b286-4e09-b117-2d61e984fd69.png)
 
 
 Some times it is very difficult to understand and implement a Singly Linked List.
